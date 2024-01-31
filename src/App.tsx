@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Board from './components/Board'
 import Publish from './components/Publish';
 
-interface Writing {
+export interface Writing {
   id: number;
   title: string;
   body: string;

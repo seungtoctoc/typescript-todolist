@@ -1,12 +1,7 @@
 import React from "react";
 
-import Writing from './Writing'
-
-interface Writing {
-    id: number;
-    title: string;
-    body: string;
-}
+import WritingView from './WritingView'
+import {Writing} from '../App'
 
 interface Props {
     writings: Writing[];
@@ -22,11 +17,11 @@ export default function Board(props: Props) {
     return (
         <div className='container mt-5' style={{zIndex:'1', paddingBottom:'300px'}}>
             {writings.map(writing => (
-                <Writing 
+                <WritingView
                     key={writing.id}
                     writing={writing}
                     deleteWriting={deleteWriting}
-                    modifyWriting={modifyWriting}></Writing> 
+                    modifyWriting={modifyWriting}></WritingView> 
             ))}
         </div>
     )

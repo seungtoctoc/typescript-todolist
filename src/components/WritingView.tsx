@@ -3,12 +3,7 @@ import React, {useState} from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
-interface Writing {
-    id: number;
-    title: string;
-    body: string;
-}
+import {Writing} from '../App'
 
 interface Props {
     writing: Writing;
