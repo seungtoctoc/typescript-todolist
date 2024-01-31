@@ -4,7 +4,19 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function AlwaysOpenExample(props) {
+interface Writing {
+    id: number;
+    title: string;
+    body: string;
+}
+
+interface Props {
+    writing: Writing;
+    deleteWriting: (writingToDelete : Writing) => void;
+    modifyWriting: (writingToModify: Writing, modifyValue: string) => void;
+}
+
+function AlwaysOpenExample(props: Props) {
     const writing = props.writing;
     const deleteWriting = props.deleteWriting;
     const modifyWriting = props.modifyWriting;
@@ -16,11 +28,11 @@ function AlwaysOpenExample(props) {
         setEditing(true);
     }
 
-    const clickDeleteButton = (writing) => {
+    const clickDeleteButton = (writing: Writing) => {
         deleteWriting(writing);
     }
 
-    const clickCompleteButton = (writing) => {
+    const clickCompleteButton = (writing: Writing) => {
         setEditing(false);
         modifyWriting(writing, modifyValue);
     }
@@ -42,7 +54,7 @@ function AlwaysOpenExample(props) {
                             <>
                                 <Form.Control as="textarea" rows={4}
                                     onChange={(e) => setModifyValue(e.target.value)}
-                                    onKeyDown={(e) => e.key === 'Enter' && clickCompleteButton()}
+                                    onKeyDown={(e) => e.key === 'Enter' && clickCompleteButton(writing)}
                                 />
 
                                 <div className="mt-4 d-flex justify-content-end">

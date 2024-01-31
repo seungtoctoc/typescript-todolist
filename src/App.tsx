@@ -4,11 +4,16 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Board from './components/Board'
-import Button from 'react-bootstrap/Button';
 import Publish from './components/Publish';
 
+interface Writing {
+  id: number;
+  title: string;
+  body: string;
+}
+
 function App() {
-  const [writings, setWritings] = useState([])
+  const [writings, setWritings] = useState<Writing[]>([]);
 
   useEffect(() => {
     console.log('useEffect');
@@ -26,13 +31,13 @@ function App() {
     })
   }
   
-  const deleteWriting = (writingToDelete) => {
+  const deleteWriting = (writingToDelete : Writing) => {
     setWritings(writings.filter(writing => 
       writing.id != writingToDelete.id)
     );
   }
 
-  const modifyWriting = (writingToModify, modifyValue) => {
+  const modifyWriting = (writingToModify: Writing, modifyValue: string) => {
     setWritings(writings.map((writing) => 
       writing.id === writingToModify.id ?
         {...writing, body: modifyValue} 
@@ -41,7 +46,7 @@ function App() {
     );
   }
 
-  const publishWriting = (title, body) => {
+  const publishWriting = (title: string, body: string) => {
     let id = writings.length + 1;
     setWritings([...writings, {title:title, body:body, id:id}])
   }
@@ -51,12 +56,10 @@ function App() {
       <Board
           writings={writings} 
           deleteWriting={deleteWriting}
-          modifyWriting={modifyWriting}>   
-      </Board>
+          modifyWriting={modifyWriting}></Board>
 
       <Publish
-        publishWriting={publishWriting}>
-      </Publish>
+        publishWriting={publishWriting}></Publish>
     </div>
   );
 }

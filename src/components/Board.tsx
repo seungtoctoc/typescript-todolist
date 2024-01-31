@@ -2,7 +2,19 @@ import React from "react";
 
 import Writing from './Writing'
 
-export default function Board(props) {
+interface Writing {
+    id: number;
+    title: string;
+    body: string;
+}
+
+interface Props {
+    writings: Writing[];
+    deleteWriting: (writing: Writing) => void;
+    modifyWriting: (writingToModify: Writing, modifyValue: string) => void;
+}
+
+export default function Board(props: Props) {
     const writings = props.writings;
     const deleteWriting = props.deleteWriting;
     const modifyWriting = props.modifyWriting;
@@ -14,8 +26,7 @@ export default function Board(props) {
                     key={writing.id}
                     writing={writing}
                     deleteWriting={deleteWriting}
-                    modifyWriting={modifyWriting}>    
-                </Writing> 
+                    modifyWriting={modifyWriting}></Writing> 
             ))}
         </div>
     )
